@@ -25,7 +25,7 @@ passport.use('local-signup', new LocalStrategy({
 }, function(req, email, password, done){
   User.findOne({'local.email': email}, function(err, user){
     if(err) return done User()
-    if(user) return done(null, false, req.flash('signupmessage', 'that email is taken'))
+    if(user) return done(null, false, req.flash('signupMessage', 'that email is taken'))
     var newUser = new User()
     newUser.local.email = email
     newUser.local.password = newUser.generateHash(password)
@@ -35,4 +35,19 @@ passport.use('local-signup', new LocalStrategy({
       return done(null, newUser, null)
     })
   }})
+}))
+
+///////////////
+// local login
+passport.use('local-login', new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+}, function(req, email, password, done){
+  User.findOne({'local.email': email}, function(err, user){
+    if(err) return done (err)
+    if(!user) return done(null, false, req.flash('loginMessage', 'no user found...'))
+
+    return done(null, user)
+  })
 }))
