@@ -8,12 +8,14 @@ var mongoose = require('mongoose'),
     event_name: String,
     event_url: String,
     group_name: String,
+    group_url: String,
     date: Number,
     zip: Number,
     country: String,
     city: String,
     description: String,
-    category: Number
+    category: Number,
+    created_at: Date
   })
 
 //middleware before saving to the db -MAYBE CHANGE?
