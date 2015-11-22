@@ -1,12 +1,26 @@
 //profile.ejs
 
 <div class="page-header">
-  <h1><%= user.local.name %></h1>
+  <h1><%= user.local.name || user.facebook.name %></h1>
   <a ref="/logout" class="btn btn-default btn-sm">Logout</a>
 </div>
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <div class="well">
+
+      <% if(user.facebook.id) { %>
+        <h3>Facebook</h3>
+        <p>
+          <strong>Id</strong>: <%= user.facebook.id %><br>
+          <strong>token</strong>: <%= usr.facebook.token %><br>
+          <strong>email</strong>: <%= user.facebook.email %><br>
+          <strong>name</strong>: <%= user.facebook.name %><br>
+
+        </p>
+
+        <% } else { %>
+
+
       <h3>Locally Stored User</h3>
       <p>
         <strong>Name</strong>: <%= user.local.name %><br>
@@ -14,6 +28,7 @@
         <strong>email</strong>: <%= user.local.email %><br>
         <strong>password</strong>: <%= user.local.password %><br>
       </p>
+      <% } %>
     </div>
-  </div>  
+  </div>
 </div>

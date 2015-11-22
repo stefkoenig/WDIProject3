@@ -32,6 +32,13 @@ userRouter.get('/logout', function(req, res){
   req.redirect('/')
 })
 
+userRouter.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
+
+userRouter.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/profile',
+  failureRedirect: '/'
+}))
+
 //a method used to authorize a user BEFORE allowing them to proceed to the profile page:
 function isLoggedIn (req, res, next){
   if(req.isAuthenticated()) return next()
