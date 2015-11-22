@@ -30,7 +30,7 @@
 			});
 
 	$('.show-details').on('click', function(evt){
-	
+
 		$.ajax({
 			url: '/videos/' + evt.target.id,
 			method: 'GET',
@@ -42,9 +42,42 @@
 }
 })
 })
-		
 
-	
+<h1>MeetUps</h1>
+<button type="button" id="meetups">Display Meetups</button>
+
+<ul class="all-meetups"></ul>
+
+<script type="text/javascript">
+
+$("#videos").on('click',function(){
+	$.ajax({
+	url: 'https://api.meetup.com/find/groups?zip=90403&radius=1&category=tech&sign=true&key=3a2b371927762ef203771e35256a42',
+	method: 'GET',
+	success: function(data){
+
+		data.forEach(function(m){
+			var nameSpan = '<span class="meetup-name">' + m.name + '</span>'
+			var showDetails = '<button id="'+ m._id + '" class="show-details">Show Details</button>'
+			var li = '<li>' + nameSpan + m.rating + showDetails + '</li>'
+			$('.all-meetups').append(li);
+		});
+
+$('.show-details').on('click', function(evt){
+
+	$.ajax({
+		url: '/videos/' + evt.target.id,
+		method: 'GET',
+		success: function(data){
+			console.log(data)
+		}
+	})
+})
+}
+})
+})
+
+
 	</script>
 
 </body>
