@@ -9,12 +9,12 @@ var express       = require('express'),
     cookieParser  = require('cookie-parser'),
     bodyParser    = require('body-parser'),
     session       = require('express-session'),
-    passport      = require('passport'),
+    passport      = require('passport')
     port          = process.env.PORT || 3000
 
 //connect to MongoDB
 mongoose.connect('mongodb://localhost/meetted', function(err){
-  if(err) res.send(err)
+  if(err) throw err
   console.log('Database connected! Great success!')
 })
 
@@ -29,9 +29,9 @@ app.get('/', function(req,res){
 })
 
 //route for retrieving meetup events(to be merged to main page later)
-app.use('/meetup', meetupRoutes)
+app.use('/meetup', meetTedRoutes)
 
 //listen on port
-app.listen(port, function(){
-  console.log('server running on port', port)
+app.listen(3000, function(){
+  console.log('server running on port '+ port)
 })
