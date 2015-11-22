@@ -1,9 +1,9 @@
 // /config/passport.js
 
 var passport      = require('passport'),
-var LocalStrategy = require('passport-local').Strategy
+    LocalStrategy = require('passport-local').Strategy
 
-var User          = require('../model/User.js')
+var User          = require('../models/user_model.js')
 
 passport.serializeUser(function(user,done){
   done(null, user.id)
@@ -24,7 +24,7 @@ passport.use('local-signup', new LocalStrategy({
   passReqToCallback: true
 }, function(req, email, password, done){
   User.findOne({'local.email': email}, function(err, user){
-    if(err) return done User()
+    if(err) return done (user)
     if(user) return done(null, false, req.flash('signupMessage', 'that email is taken'))
     var newUser = new User()
     newUser.local.email = email
@@ -34,7 +34,7 @@ passport.use('local-signup', new LocalStrategy({
       if(err) throw err
       return done(null, newUser, null)
     })
-  }})
+  })
 }))
 
 ///////////////
@@ -51,3 +51,5 @@ passport.use('local-login', new LocalStrategy({
     return done(null, user)
   })
 }))
+
+module.exports = passport

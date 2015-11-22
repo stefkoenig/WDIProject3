@@ -1,7 +1,7 @@
 //user_model.js
 var mongoose      = require('mongoose'),
-var bcrypt        = require('bcrypt'),
-var Schema        = mongoose.Schema
+    bcrypt        = require('bcrypt'),
+    Schema        = mongoose.Schema
 
 var userSchema    = new Schema({
   local: {
