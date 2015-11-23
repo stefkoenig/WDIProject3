@@ -1,31 +1,87 @@
 # WDIProject3
 Present an idea to the instructors with a deck, covering the period of project inception, that includes:
 
-<h2>a list of included technologies</h2>
-<p>
-	<ul>
-		<li>html</li>
-		<li>css</li>
-		<li>bootstrap</li>
-		<li>node.js
-			<ul><li>packages include: express, ejs, 				mongoose, flash, morgan, cookie-parser, 				body-parser, session, passport, 				passport-config, passport-meetup
-			</li></ul>
-		<li>mongo DB</li>
-		<li>AJAX</li>
-		<li>Jquery</li>
+The basic concept of the app is to use both YouTUBE and MEETUP apis to integrate their services into a single app.  We will display a ramdom video, rather than allow users to choose their own, in an effort to expose users to ideas, and categories that they may not otherwise encounter.  Underneath the video we will provide a list of MEETUPs that are local to the user that match the topic of the TED talk.
+
+##a list of included technologies
+	- html
+	- css
+	- bootstrap
+	- node.js
+		- packages included: 
+		- 	express
+		-  ejs
+		-  mongoose
+		-  flash
+		-  morgan
+		-  cookie-parser
+		-  body-parser
+		-  session
+		-  passport
+		-  passport-config
+		-  passport-meetup
 			
-	</ul></p>
+	- mongo DB
+	- AJAX
+	- Jquery
+	- creating a single page application
+			
 
-<h2>a list of third-party APIs consumed </h2>
-<p>We are accessing the YouTUBE api to pull TED talks into our app, and MEETUP to pull meetups in the local area that match the category for the TED video viewed.
 
-<h2>which OAuth provider(s) your app will use for authentication</h2>
-<p>We will use passport and then Passport-Meetup to allow users to login with MEETUP if they have an account</p>
+##third-party APIs consumed 
+We are accessing the YouTUBE api to pull TED talks into our app, and MEETUP to pull meetups in the local area that match the category for the TED video viewed.
 
-<h2>wireframes for the central interactions</h2>
-<p></p>
-<h2>an underlying data model.</h2>
-<p></p>
+##OAuth provider for authentication
+We will use passport and then Passport-Meetup to allow users to login with MEETUP if they have an account
 
-<li>Document your app's RESTful API.</li>
-<li>Craft thoughtful user stories together, as a team, and manage and distribute those user stories to team members based on skills and interests using Trello.</li>
+##wireframes
+
+![landing page](assets/images/readme/landingpage.png)
+![login page](assets/images/readme/login page.png)
+![signup page](assets/images/readme/signup page.png)
+![video display page](assets/images/readme/video display page.png)
+
+##an underlying data model.
+A user has many videos
+
+User:
+user info
+Likes: ['video category', 'video category', 'video category', ...] 
+<- this is populated when a user likes a video, with that video's category
+
+Video:
+video info
+category
+
+##Document your app's RESTful API.
+The User Schema
+	
+	- Local Login
+		-name: String
+		-email: String
+		-password: String
+		-location: Number *zip code*
+		-likes: [ *each item is a video category the user has liked*]
+	- Meetup Login
+		-id: String
+		-name: String
+		-token: String
+		-email: String
+		-location: Number *zip code*
+		
+
+
+Video Schema
+
+	-id: String
+	-title: String
+	-url: String
+	-category: String
+	-description: Text
+			
+##User Stories 
+- As a USER, I want to be able to sign up locally or through my meetup site
+- As a USER, I want to view a random TED talk video each day to expand my mind
+- As a USER *with an expanded mind*, I want to be able to pursue my new interests through related local MEETUP groups that are displayed below the video
+- As the CREATORS of the site, we want to consume the TED and MEETUP apis
+- As the CREATORS of the site, we want to gather information on users and their likes and dislikes and store them in our API
