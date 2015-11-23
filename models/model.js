@@ -6,17 +6,34 @@ var mongoose = require('mongoose'),
 //creating the schema of our meetup records
   var meetupSchema = new Schema({
     event_name: String,
-    event_url: String,
+    event_id: Number,
+    time: Number,
+    utc_offset: Number,
+    category_id: Number,
+    category_name: String,
     group_name: String,
     group_url: String,
-    date: Number,
     zip: Number,
     country: String,
     city: String,
-    description: String,
-    category: Number,
+    state: String,
+    group_description: String,
     created_at: Date
   })
+
+  // var meetupSchema = new Schema({
+  //   event_name: String,
+  //   event_url: String,
+  //   group_name: String,
+  //   group_url: String,
+  //   date: Number,
+  //   zip: Number,
+  //   country: String,
+  //   city: String,
+  //   description: String,
+  //   category: Number,
+  //   created_at: Date
+  // })
 
 //middleware before saving to the db -MAYBE CHANGE?
 meetupSchema.pre('save',function(next){
