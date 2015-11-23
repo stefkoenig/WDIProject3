@@ -11,6 +11,7 @@
 <body>
 	<h1>Meet Ted</h1>
 	<button type="button" id="videos">Display Talk</button>
+	<button type="button" id="post-videos">Post Video To DB</button>
 
 <ul class="all-videos"></ul>
 
@@ -29,9 +30,29 @@
 				embedURL = 'https://www.youtube.com/embed/' + videoId
 				$('#display-video').attr('src',embedURL)
 				console.log(embedURL) 
+
 			}
 		})		
 	})
+
+	$("#post-videos").on('click',function(){	
+				    $.ajax({
+				      	url: '/api/videos',
+				      	method: 'POST',
+				      	data: {
+				      		videoId: videoId,
+				      		source: embedURL
+				      	},
+						dataType: 'application/json',
+						success: function(data){
+							console.log(data)
+							console.log(videoId)
+							console.log(embedURL)
+						}
+				    })
+				})
+
+	
 	
 	</script>
 <iframe id="display-video" width="420" height="315" src=""></iframe>
