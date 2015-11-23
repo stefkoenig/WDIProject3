@@ -4,8 +4,8 @@ var express          = require('express'),
     meetupController = require('../controllers/controller.js')
 
 //create routes for /meetup
-meetupRoutes.route('/')
-  .get(meetupController.index)
-  .post(meetupController.create)
-
-module.exports = meetupRoutes
+// meetupRoutes.route('/')
+//   .get(meetupController.index)
+//   .post(meetupController.create)
+//
+// module.exports = meetupRoutes

@@ -27,19 +27,19 @@ var meetTedRoutes = require('./routes/route.js')
 app.use(logger('dev'))
 
 //static assets
-app.use(express.static('public'))
+app.use(express.static(__dirname + "/public"))
 
 //make json object available in requests
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-//routes
-app.get('/', function(req,res){
-  res.send('Go to http://localhost:3000/meetup to see meetup groups')
-})
+// //routes
+// app.get('/', function(req,res){
+//   res.send('Go to http://localhost:3000/meetup to see meetup groups')
+// })
 
 //Meetup routes
-app.use('/meetup', meetupRoutes)
+//app.use('/meetup', meetupRoutes)
 
 //listen on port
 app.listen(3000, function(){
