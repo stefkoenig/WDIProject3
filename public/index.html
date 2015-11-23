@@ -16,20 +16,19 @@
 <ul class="all-videos"></ul>
 
 	<script type="text/javascript">
-	var embedURL;
-	var videoId;
 	$("#videos").on('click',function(){
 		$.ajax({
-			url: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUAuUUnT6oDeKwE6v1NGQxug&maxResults=25&key=AIzaSyAzeF6VB_ogSwIfHIFYje4IAY0enmfRum0",
+			url: "/api/videos",
 			method: 'GET',
 			success: function(data){
-				console.log(data)
-				var randomVideo=Math.floor(Math.random() * data.items.length)
-				console.log(randomVideo)
-				videoId = data.items[randomVideo].snippet.resourceId.videoId
-				embedURL = 'https://www.youtube.com/embed/' + videoId
-				$('#display-video').attr('src',embedURL)
-				console.log(embedURL) 
+				console.log("video found")
+				// console.log(data)
+				// var randomVideo=Math.floor(Math.random() * data.items.length)
+				// console.log(randomVideo)
+				// videoId = data.items[randomVideo].snippet.resourceId.videoId
+				// embedURL = 'https://www.youtube.com/embed/' + videoId
+				$('#display-video').attr('src',data)
+				// console.log(embedURL) 
 
 			}
 		})		
