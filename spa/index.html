@@ -48,5 +48,64 @@
       ::after
     </section>
 
+    <section id="content" class="container content-section">
+      ::before
+      <div class="row">
+        ::before
+        <div class="col-lg-10 col-lg-offset-1 text-center">
+          <h2 class="entry-title">more content if we have it</h2>
+        </div>
+        ::after
+      </div>
+      <div class="row recipe-section">
+        ::before
+        <div class="col-md-4">
+          <h3>Title and list items</h3>
+          <p>ptag if needed</p>
+          <ul>
+            <li>**</li>
+            <li>**</li>
+            <li>**</li>
+            <li>**</li>
+            <li>**</li>
+            <li>**</li>
+          </ul>
+        </div>
+        <div class="col-md-8 text-center nopadding">
+          <a id="read-recipe" href="#modal1" class="recipe hidden-xs">
+            <button class="btn btn-transparent btn-lg btn1">Button</button>
+            <div class="mask">  </div>
+              <div class="modal1" class="overlay">
+                <input class="close-bt" type="button" value>
+                <h3>more information in a modal</h3>
+                <p>  "Paragraph one"</p>
+                <p>  "Paragraph two"</p>
+                <p>  "Paragraph three"</p>
+                <p>  "Paragraph four"</p>
+              </div>
+            </div>
+          </a>
+          <div class="recipe visible-xs">
+            <button id="read-recipe-mobile" data-toggle="modal" data-target="#myModal" class="btn btn-transparent btn-lg">The modal</button>
+            <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+              <div class="modal-dialog" role="document">
+                <div class="modal-body">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                  <h3>how to do something modal</h3>
+                  <p>"paragraph one"</p>
+                  <p>"paragraph two"</p>
+                  <p>"paragraph three"</p>
+                  <p>"paragraph four"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    ::after
+  </div>
+  ::after
+    </section>
+
   </body>
 </html>
