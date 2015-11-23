@@ -15,37 +15,28 @@
 <ul class="all-videos"></ul>
 
 	<script type="text/javascript">
-
+	var embedURL;
+	var videoId;
 	$("#videos").on('click',function(){
 		$.ajax({
-		url: 'https://www.googleapis.com/youtube/v3/search?key={IzaSyAzeF6VB_ogSwIfHIFYje4IAY0enmfRum0 }&channelId={TEDtalksDirector}&part=snippet,id&order=date&maxResults=20',
-		method: 'GET',
-		success: function(data){
-
-			data.forEach(function(m){
-				var nameSpan = '<span class="movie-name">' + m.name + '</span>'
-				var showDetails = '<button id="'+ m._id + '" class="show-details">Show Details</button>'
-				var li = '<li>' + nameSpan + m.rating + showDetails + '</li>'
-				$('.all-videos').append(li);
-			});
-
-	$('.show-details').on('click', function(evt){
-	
-		$.ajax({
-			url: '/videos/' + evt.target.id,
+			url: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUAuUUnT6oDeKwE6v1NGQxug&maxResults=25&key=AIzaSyAzeF6VB_ogSwIfHIFYje4IAY0enmfRum0",
 			method: 'GET',
 			success: function(data){
 				console.log(data)
+				var randomVideo=Math.floor(Math.random() * data.items.length)
+				console.log(randomVideo)
+				videoId = data.items[randomVideo].snippet.resourceId.videoId
+				embedURL = 'https://www.youtube.com/embed/' + videoId
+				$('#display-video').attr('src',embedURL)
+				console.log(embedURL) 
 			}
-		})
+		})		
 	})
-}
-})
-})
-		
-
 	
 	</script>
+<iframe id="display-video" width="420" height="315" src=""></iframe>
+
+
 
 </body>
 </html>
