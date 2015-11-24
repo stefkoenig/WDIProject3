@@ -10,7 +10,7 @@ var express       = require('express'),
     bodyParser    = require('body-parser'),
     session       = require('express-session'),
     passport      = require('passport'),
-    videoRouter   = require('./routes/route'),
+    videoRouter   = require('./routes/route.js'),
     meetupRouter  = require('./routes/route.js'),
     port          = process.env.PORT || 3000
 
