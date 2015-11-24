@@ -1,5 +1,6 @@
 var Video  = require('../models/video.js'),
     request = require('request')
+
     
 
 function index(req, res){
@@ -25,10 +26,21 @@ request(requestURL,function(error,response,body){
             /////third request to get category name based on category id
                 var requestCategoryNameURL = "https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&id="+ categoryId + "&key=AIzaSyAzeF6VB_ogSwIfHIFYje4IAY0enmfRum0"
                     request(requestCategoryNameURL,function(error,response,body){
-                      var CategoryItems = JSON.parse(body).items
+                      CategoryItems = JSON.parse(body).items
                       console.log('category items', CategoryItems)
                       var categoryName = CategoryItems[0].snippet.title
-                      console.log("categoryName:", categoryName)       
+                      console.log("categoryName:", categoryName) 
+
+                          var video = Video({
+                            videoId: videoId,
+                            source: embedURL,
+                            categoryName: categoryName
+                          })
+                           video.save(function(err){
+                              if (err) res.send(err)
+                                console.log("success")
+                             
+                            }) 
                       })
                     })
 
@@ -36,23 +48,7 @@ request(requestURL,function(error,response,body){
       })
 }
 
-function create(req, res){
- 
-  var video = new Video()
-  video.videoId = req.body.videoId
-  console.log(req.body.videoId)
-  video.source  = req.body.source
-  video.categoryName = req.body.categoryName
-
-  video.save(function(err){
-    if (err) res.send(err)
-      console.log("success")
-    res.json({success: true, message: 'Video created!'})
-  })
-}
-
-
 module.exports = {
   index: index,
-  create: create
+
 }
