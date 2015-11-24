@@ -21,6 +21,7 @@
 			success: function(data){
 				console.log("video found")
 				$('#display-video').attr('src',data)
+
 			}
 		})		
 	})
@@ -31,10 +32,12 @@
 				      	method: 'POST',
 				      	data: {
 				      		videoId: videoId,
-				      		source: embedURL
+				      		source: embedURL,
+				      		categoryName: categoryName
 				      	},
 						dataType: 'application/json',
 						success: function(data){
+							console.log('videoinfo posted to database')
 							console.log(data)
 							console.log(videoId)
 							console.log(embedURL)
