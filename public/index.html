@@ -41,9 +41,6 @@
 						}
 				    })
 				})
-
-	
-	
 	</script>
 	<iframe id="display-video" width="420" height="315" src=""></iframe>
 
@@ -54,19 +51,17 @@
 		var embedURL;
 		var meetupName;
 		$("#meetups").on('click',function(){
-			$.ajax({
-				url: "/api/meetups",
-				method: "GET",
-				success:function(data){
-					console.log("meetups found")
-					console.log(data)
-					data.forEach(function(m){
-						var nameSpan = '<span class="meetup-name">' + data[m].name + '</span>'
+		$.ajax({url: 'https://api.meetup.com/find/groups?zip=90403&country=US&upcoming_events=true&fallback_suggestions=true&text=tech&order=distance&page=6&sign=true&key=3a2b371927762ef203771e35256a42',
+			 method: 'GET', 
+			 dataType: 'jsonp',
+			 success: function(data){
+			console.log(data)
+			data.data.forEach(function(m){
+						var nameSpan = '<span class="meetup-name">' + m.name + '</span>'
 						var li = '<li>' + nameSpan + '</li>'
 						$('.all-meetups').append(li)
 					})
-				}
-			})
+			}})
 		})
 
 </script>
