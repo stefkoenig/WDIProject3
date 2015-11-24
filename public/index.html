@@ -13,8 +13,6 @@
 	<button type="button" id="videos">Display Talk</button>
 	<button type="button" id="post-videos">Post Video To DB</button>
 
-<ul class="all-videos"></ul>
-
 	<script type="text/javascript">
 	$("#videos").on('click',function(){
 		$.ajax({
@@ -22,14 +20,7 @@
 			method: 'GET',
 			success: function(data){
 				console.log("video found")
-				// console.log(data)
-				// var randomVideo=Math.floor(Math.random() * data.items.length)
-				// console.log(randomVideo)
-				// videoId = data.items[randomVideo].snippet.resourceId.videoId
-				// embedURL = 'https://www.youtube.com/embed/' + videoId
 				$('#display-video').attr('src',data)
-				// console.log(embedURL) 
-
 			}
 		})		
 	})
@@ -54,8 +45,31 @@
 	
 	
 	</script>
-<iframe id="display-video" width="420" height="315" src=""></iframe>
+	<iframe id="display-video" width="420" height="315" src=""></iframe>
 
+		<h1>MeetUps</h1>
+		<button type="button" id="meetups">Display Meetups</button>
+	<ul class="all-meetups"></ul>
+		<script type="text/javascript">
+		var embedURL;
+		var meetupName;
+		$("#meetups").on('click',function(){
+			$.ajax({
+				url: "/api/meetups",
+				method: "GET",
+				success:function(data){
+					console.log("meetups found")
+					console.log(data)
+					data.forEach(function(m){
+						var nameSpan = '<span class="meetup-name">' + data[m].name + '</span>'
+						var li = '<li>' + nameSpan + '</li>'
+						$('.all-meetups').append(li)
+					})
+				}
+			})
+		})
+
+</script>
 
 
 </body>

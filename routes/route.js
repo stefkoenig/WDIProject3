@@ -1,12 +1,21 @@
 var express         = require('express'),
-    videoRoutes      = express.Router(),
-    videoController  = require('../controllers/video_controller.js')
+    videoRouter      = express.Router(),
+    videoController  = require('../controllers/video_controller.js'),
+    meetupRouter   	= express.Router(),
+    meetupController = require('../controllers/meetup_controller.js')
 
 /////////////////////////
 // create routes for /api
-videoRoutes.route('/videos')
+videoRouter.route('/videos')
   .get(videoController.index)
   .post(videoController.create)
   // .delete(todoController.destroy)
 
-  module.exports = videoRoutes
+
+meetupRouter.route('/meetups')
+	.get(meetupController.show)
+
+
+  module.exports = videoRouter
+  module.exports = meetupRouter
+
