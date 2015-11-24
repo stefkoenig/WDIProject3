@@ -22,10 +22,10 @@
 				console.log("video found")
 				$('#display-video').attr('src',data)
 			}
-		})		
+		})
 	})
 
-	$("#post-videos").on('click',function(){	
+	$("#post-videos").on('click',function(){
 				    $.ajax({
 				      	url: '/api/videos',
 				      	method: 'POST',
@@ -35,9 +35,9 @@
 				      	},
 						dataType: 'application/json',
 						success: function(data){
-							console.log(data)
-							console.log(videoId)
-							console.log(embedURL)
+							// console.log(data)
+							// console.log(videoId)
+							// console.log(embedURL)
 						}
 				    })
 				})
@@ -46,23 +46,40 @@
 
 		<h1>MeetUps</h1>
 		<button type="button" id="meetups">Display Meetups</button>
-	<ul class="all-meetups"></ul>
-		<script type="text/javascript">
-		var embedURL;
-		var meetupName;
-		$("#meetups").on('click',function(){
-		$.ajax({url: 'https://api.meetup.com/find/groups?zip=90403&country=US&upcoming_events=true&fallback_suggestions=true&text=tech&order=distance&page=6&sign=true&key=3a2b371927762ef203771e35256a42',
-			 method: 'GET', 
-			 dataType: 'jsonp',
-			 success: function(data){
-			console.log(data)
-			data.data.forEach(function(m){
-						var nameSpan = '<span class="meetup-name">' + m.name + '</span>'
-						var li = '<li>' + nameSpan + '</li>'
-						$('.all-meetups').append(li)
-					})
-			}})
-		})
+		<div class="all-meetups">
+			<!-- <ul class="list-meetups"></ul> -->
+		</div>
+				<script type="text/javascript">
+				var groupImage
+				$("#meetups").on('click',function(){
+				$.ajax({url: 'https://api.meetup.com/find/groups?zip=90403&country=US&upcoming_events=true&fallback_suggestions=true&text=tech&order=distance&page=6&sign=true&key=3a2b371927762ef203771e35256a42',
+					 method: 'GET',
+					 dataType: 'jsonp',
+					 success: function(data){
+						 console.log(data)
+						 data.data.forEach(function(m){
+							console.log(m)
+							var groupLink = m.link
+							var eventId = m.next_event.id
+							var eventLink = groupLink + 'events/' + eventId
+							var groupLinkHTML = '<a href="'+ groupLink + '">'+ m.name + '</a>'
+							var eventLinkHTML = '<a href="'+ eventLink + '">'+ m.next_event.name + '</a>'
+							var groupLi = '<li>' + groupLinkHTML + '</li>'
+							var eventSpan = '<span>' + eventLinkHTML + '</span>'
+
+							if (m.group_photo){
+								groupImage = m.group_photo.photo_link
+								console.log(groupImage)
+							}
+							else{
+								groupImage = 'https://www.petfinder.com/wp-content/uploads/2012/11/dog-how-to-select-your-new-best-friend-thinkstock99062463.jpg'
+								console.log(groupImage)
+							}
+							$('.list-meetups').append(groupLi).append(eventSpan)
+							$("#all-meetups").append('<img src="' + groupImage + '">')
+							})
+					}})
+				})
 
 </script>
 
