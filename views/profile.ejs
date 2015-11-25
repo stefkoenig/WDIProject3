@@ -1,24 +1,29 @@
-<div class="col-sm-6 col-sm-offset-3">
-    <h1>Login</h1>
+<div class="page-header">
 
-    <form action="/login" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email">
+    <h1><%= user.local.name || user.facebook.name %></h1>
+
+    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+
+</div>
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="well">
+          <!-- /////////// Step 10 /////////// -->
+          <% if(user.facebook.id ) {%>
+            <h3>Facebook User</h3>
+          <% } else { %>
+            <h3>Locally Stored User</h3>
+          <% } %>
+
+            <p>
+                <strong>Name</strong>: <%= user.local.name || user.facebook.name %><br>
+                <strong>id</strong>: <%= user._id %><br>
+                <strong>email</strong>: <%= user.local.email || user.facebook.email %><br>
+                <% if(user.local.id){ %>
+                  <strong>zip</strong>: <%= user.local.zip %><br>
+                <% } %>
+            </p>
+        <!-- /////////// End Step 10 /////////// -->
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
-        </div>
-
-        <button type="submit" class="btn btn-info btn-lg">Login</button>
-    </form>
-
-    <hr>
-
-    <h2>Or Login With <a href="/auth/facebook" class="btn btn-primary btn-lg">Facebook</a></h2>
-
-    <p>Or, <a href="/signup">Signup</a></p>
-    <p>Go back <a href="/">home</a>.</p>
-
+    </div>
 </div>

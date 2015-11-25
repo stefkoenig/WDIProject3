@@ -1,7 +1,8 @@
 // Step 2 //
 var express = require('express'),
     passport = require('passport'),
-    userRouter = express.Router()
+    userRouter = express.Router(),
+    usersController = require('../controllers/user_controller.js')
 
 ///////////// Step 5 /////////////
 userRouter.route('/login')
@@ -14,6 +15,11 @@ userRouter.route('/login')
     failureFlash: true
   }))
 
+userRouter.route('/update')
+  .put(usersController.update)
+
+userRouter.route('/profile')
+  .delete(usersController.destroy)
 
 userRouter.route('/signup')
   .get(function(req, res){

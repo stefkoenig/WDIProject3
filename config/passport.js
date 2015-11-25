@@ -30,6 +30,7 @@ passport.use('local-signup', new LocalStrategy({
 
     var newUser = new User()
     newUser.local.name = req.body.name
+    newUser.local.zip = req.body.zip
     newUser.local.email = req.body.email
     newUser.local.password = newUser.generateHash(password)
 
