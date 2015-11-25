@@ -1,4 +1,5 @@
-var User = require('../config/passport.js').user
+var passport = require('../config/passport.js')
+var User     = require('../models/User.js')
 
 // function create(req, res){
 //     var user = new User(req.body.user)
@@ -16,19 +17,21 @@ function index(req,res){
     })
 }
 
-function update(req, req){
+function update(req, res){
   User.findOneAndUpdate({name: req.params.name}, {email: req.params.email}, {zip: req.params.zip}, {password: req.params.email}, function(err, user){
     if(err) res.send(err)
     res.json(user)
   })
 }
 
-// function show(req,res){
-//     User.find({_id: req.params.user_id}, function(err,user){
-//         if(err) res.json({ err: err })
-//         res.json(user)
-//     })
-// }
+function show(req, res){
+     User.find({_id: req.user._id}, function(err,user){
+         if(err) res.json({ err: err })
+         console.log("the user is ", req.user)
+
+         res.render('profile', {user: req.user})
+     })
+ }
 
 function destroy(req, res){
     User.findOneAndRemove({_id: req.params.user_id}, function(err, user){
@@ -52,8 +55,9 @@ function destroy(req, res){
 // }
 
 module.exports = {
-    create: create,
+    //create: create,
     index: index,
+    show: show,
     update: update,
     destroy: destroy
 }

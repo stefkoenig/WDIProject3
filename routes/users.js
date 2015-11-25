@@ -15,10 +15,14 @@ userRouter.route('/login')
     failureFlash: true
   }))
 
+  userRouter.route('/index')
+    .get(usersController.index)
+
 userRouter.route('/update')
   .put(usersController.update)
 
 userRouter.route('/profile')
+  .get(usersController.show)
   .delete(usersController.destroy)
 
 userRouter.route('/signup')
@@ -26,7 +30,7 @@ userRouter.route('/signup')
     res.render('signup', { message: req.flash('signupMessage') })
   })
   .post(passport.authenticate('local-signup', {
-    successRedirect: '/profile',
+    successRedirect: '/',
     failureRedirect: '/signup',
     failureFlash: true
   }))
