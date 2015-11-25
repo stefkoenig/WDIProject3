@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 //creating the schema of our meetup records
   var videoSchema = new Schema({
     videoId: String,
-    source: String
+    source: String,
+    categoryName: String
   })
 //middleware before saving to the db -MAYBE CHANGE?
 videoSchema.pre('save',function(next){
