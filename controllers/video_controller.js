@@ -12,7 +12,8 @@ function index(req, res){
         var videoId = videoItems[randomVideo].snippet.resourceId.videoId
         var embedURL = 'https://www.youtube.com/embed/' + videoId
           console.log("embedURL:", embedURL)
-        res.send(embedURL)
+
+        
          
         ///////second request to get video category based on video id
         var requestCategoryIdURL = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+ videoId +"&key=AIzaSyAzeF6VB_ogSwIfHIFYje4IAY0enmfRum0"
@@ -38,12 +39,16 @@ function index(req, res){
                       if (err) res.send(err)
                         console.log("success")
                     }) 
+                    res.json(video)
                 })
+
               })
     })
+    
+    
 }
 
 module.exports = {
-  index: index,
+  index: index
 
 }

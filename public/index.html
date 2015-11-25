@@ -25,16 +25,16 @@
 			url: "/api/videos",
 			method: 'GET',
 			success: function(data){
+				console.log(data)
 				console.log("video found")
-				$('#display-video').attr('src',data)
-				// console.log(data.categoryName)
-			}
-		})
-	})
+				$('#display-video').attr('src',data.source)
+				var categoryName = data.categoryName
+				console.log(data.categoryName)
+	
 
 				var groupImage
 				$("#meetups").on('click',function(){
-				$.ajax({url: 'https://api.meetup.com/find/groups?zip=90403&country=US&upcoming_events=true&fallback_suggestions=true&text=tech&order=distance&page=6&sign=true&key=3a2b371927762ef203771e35256a42',
+				$.ajax({url: 'https://api.meetup.com/find/groups?zip=90403&country=US&upcoming_events=true&fallback_suggestions=true&text='+categoryName+'&order=distance&page=6&sign=true&key=3a2b371927762ef203771e35256a42',
 					 method: 'GET',
 					 dataType: 'jsonp',
 					 success: function(data){
@@ -63,6 +63,9 @@
 							})
 					}})
 				})
+		}
+		})
+	})
 
 </script>
 
