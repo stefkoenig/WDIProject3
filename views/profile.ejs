@@ -19,7 +19,7 @@
                 <strong>Name</strong>: <%= user.local.name || user.facebook.name %><br>
                 <strong>id</strong>: <%= user._id %><br>
                 <strong>email</strong>: <%= user.local.email || user.facebook.email %><br>
-                <% if(user.local.id){ %>
+                <% if(user.local.zip){ %>
                   <strong>zip</strong>: <%= user.local.zip %><br>
                 <% } %>
             </p>
