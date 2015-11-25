@@ -47,7 +47,8 @@
 		<h1>MeetUps</h1>
 		<button type="button" id="meetups">Display Meetups</button>
 		<div class="all-meetups">
-			<!-- <ul class="list-meetups"></ul> -->
+
+			<ul class="list-meetups"></ul>
 		</div>
 				<script type="text/javascript">
 				var groupImage
@@ -72,11 +73,12 @@
 								console.log(groupImage)
 							}
 							else{
-								groupImage = 'https://www.petfinder.com/wp-content/uploads/2012/11/dog-how-to-select-your-new-best-friend-thinkstock99062463.jpg'
+								groupImage = 'https://upload.wikimedia.org/wikipedia/commons/7/73/Meetup_Logo_2015.png'
 								console.log(groupImage)
 							}
-							$('.list-meetups').append(groupLi).append(eventSpan)
-							$("#all-meetups").append('<img src="' + groupImage + '">')
+
+							var imageSource = '<img src=' + '"' + groupImage + '"' + '>'
+							$('.list-meetups').append(groupLi).append(eventSpan).append(imageSource)
 							})
 					}})
 				})
