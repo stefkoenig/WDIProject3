@@ -1,4 +1,4 @@
-var User = require('../config/passport.js').user
+var User = require('../config/passport.js')
 
 // function create(req, res){
 //     var user = new User(req.body.user)
@@ -52,7 +52,7 @@ function destroy(req, res){
 // }
 
 module.exports = {
-    create: create,
+    
     index: index,
     update: update,
     destroy: destroy

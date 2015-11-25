@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 
 
-mongoose.connect('mongodb://localhost/project_3_db', function(err){
+mongoose.connect('mongodb://teamtucker:password123@ds053964.mongolab.com:53964/dansdb', function(err){
 	if(err) return console.log('Cannot connect ')
 	console.log('Connected to MongoDB. Sweet!')
 })
@@ -40,7 +40,7 @@ app.use(bodyParser.json())
 
 
 
-app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/views"))
 
 
 app.use('/api', Router)
