@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 
 
-mongoose.connect('mongodb://teamtucker:password123@ds053964.mongolab.com:53964/dansdb', function(err){
+mongoose.connect('mongodb://localhost/videos', function(err){
 	if(err) return console.log('Cannot connect ')
 	console.log('Connected to MongoDB. Sweet!')
 })

@@ -3,6 +3,7 @@ var
   LocalStrategy = require('passport-local').Strategy,
   /////////// Step 8 ///////////
   FacebookStrategy = require('passport-facebook').Strategy,
+  MeetupStrategy   = require('passport-meetup-oauth2').Strategy,
   configAuth = require('./auth.js')
   ///////// End Step 8 /////////
 
@@ -82,6 +83,38 @@ passport.use(new FacebookStrategy({
   })
 }))
 ///////// End Step 8 /////////
+/////meetup strategy//////////
+passport.use(new MeetupStrategy({
+    clientID: configAuth.meetupAuth.client_id,
+    clientSecret: configAuth.meetupAuth.client_secret,
+    callbackURL: "http://localhost:3000/auth/meetup/callback"
+  }, function (accessToken, refreshToken, profile, done) {
+    User.findOne({'meetup.id': profile.id}, function(err, user){
+    if(err) return done(err)
+    if(user) {
+      return done(null, user)
+    }
+    else {
+      var newUser = new User()
+      newUser.meetup.id = profile.id
+      newUser.meetup.token = token
+      newUser.meetup.name = profile.displayName
+      newUser.meetup.email = profile.emails[0].value
+
+      newUser.save(function(err){
+        if(err) throw err
+        return done(null, newUser)
+     })
+    }
+  })
+}))
+    
+    
+  
+
+
+
+////////
 
 module.exports = passport
 
