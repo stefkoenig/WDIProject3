@@ -40,7 +40,7 @@ app.use(bodyParser.json())
 
 
 
-app.use(express.static(__dirname + "/views"))
+app.use(express.static(__dirname + "/public"))
 
 
 app.use('/api', Router)
