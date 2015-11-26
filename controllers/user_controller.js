@@ -9,19 +9,21 @@ function index(req,res){
     })
 }
 
-function update(req, req){
+function update(req, res){
   User.findOneAndUpdate({name: req.params.name}, {email: req.params.email}, {zip: req.params.zip}, {password: req.params.email}, function(err, user){
     if(err) res.send(err)
     res.json(user)
   })
 }
 
-// function show(req,res){
-//     User.find({_id: req.params.user_id}, function(err,user){
-//         if(err) res.json({ err: err })
-//         res.json(user)
-//     })
-// }
+function show(req, res){
+     User.find({_id: req.user._id}, function(err,user){
+         if(err) res.json({ err: err })
+         console.log("the user is ", req.user)
+
+         res.render('profile', {user: req.user})
+     })
+ }
 
 function destroy(req, res){
   console.log(req.user._id)
@@ -34,6 +36,7 @@ function destroy(req, res){
 
 module.exports = {
     index: index,
+    show: show,
     update: update,
     destroy: destroy
 }
