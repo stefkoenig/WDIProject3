@@ -10,9 +10,17 @@ function index(req,res){
 }
 
 function update(req, res){
-  User.findOneAndUpdate({name: req.params.name}, {email: req.params.email}, {zip: req.params.zip}, {password: req.params.email}, function(err, user){
-    if(err) res.send(err)
-    res.json(user)
+  User.findById(req.params._id, function(err,user){
+    console.log(user)
+    user.local.name = req.body.local.name
+    user.local.email = req.body.local.email
+    user.local.zip = req.body.local.zip
+    user.local.password = req.body.local.password
+  //  {name: req.user.name}, {email: req.user.email}, {zip: req.user.zip}, {password: req.user.email}, function(err, user){
+    user.save(function(err){
+      if(err) res.send(err)
+      res.json(user)
+    })
   })
 }
 
