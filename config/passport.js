@@ -87,7 +87,9 @@ passport.use(new FacebookStrategy({
 passport.use(new MeetupStrategy({
     clientID: configAuth.meetupAuth.client_id,
     clientSecret: configAuth.meetupAuth.client_secret,
-    callbackURL: "http://localhost:3000/auth/meetup/callback"
+    callbackURL: configAuth.meetupAuth.redirect_uri,
+    grantType: configAuth.meetupAuth.grant_type,
+    code: configAuth.meetupAuth.code,
   }, function (accessToken, refreshToken, profile, done) {
     User.findOne({'meetup.id': profile.id}, function(err, user){
     if(err) return done(err)

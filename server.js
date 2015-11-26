@@ -12,9 +12,7 @@ var express       = require('express'),
     passport      = require('passport'),
     Router        = require('./routes/route.js'),
     userRouter    = require('./routes/users.js'),
-    port          = process.env.PORT || 3000
-
-
+    port          = process.env.PORT || 3000,
     passportConfig = require('./config/passport.js')
 
 
