@@ -15,10 +15,15 @@ userRouter.route('/login')
     failureFlash: true
   }))
 
+  userRouter.route('/index')
+    .get(usersController.index)
+
 userRouter.route('/update')
   .put(usersController.update)
 
+
 userRouter.route('/profile')
+  .get(usersController.show)
   .delete(usersController.destroy)
 
 userRouter.route('/signup')
@@ -26,7 +31,7 @@ userRouter.route('/signup')
     res.render('signup', { message: req.flash('signupMessage') })
   })
   .post(passport.authenticate('local-signup', {
-    successRedirect: '/profile',
+    successRedirect: '/',
     failureRedirect: '/signup',
     failureFlash: true
   }))
@@ -36,6 +41,9 @@ userRouter.route('/signup')
 userRouter.get('/profile', isLoggedIn, function(req, res){
   res.render('profile', {user: req.user})
 })
+
+userRouter.route('/profile')
+  .delete(usersController.destroy)
 
 ///////////// Step 9 /////////////
 userRouter.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))

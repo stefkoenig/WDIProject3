@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
         <div class="well">
-          <!-- /////////// Step 10 /////////// -->
+
           <% if(user.facebook.id ) {%>
             <h3>Facebook User</h3>
           <% } else { %>
@@ -17,13 +17,28 @@
 
             <p>
                 <strong>Name</strong>: <%= user.local.name || user.facebook.name %><br>
-                <strong>id</strong>: <%= user._id %><br>
+                <strong>id</strong>:<span id="user_id"> <%= user._id %></span><br>
                 <strong>email</strong>: <%= user.local.email || user.facebook.email %><br>
-                <% if(user.local.id){ %>
+                <% if(user.local.zip){ %>
                   <strong>zip</strong>: <%= user.local.zip %><br>
                 <% } %>
             </p>
-        <!-- /////////// End Step 10 /////////// -->
+
+          <% if(user._id){ %>
+            <button type="button" id="delete_user">Delete Account</button>
+          <% } %>
+            <script>
+            $("#delete_user").on('click',function(){
+          		$.ajax({
+          			url: "/profile",
+          			method: 'DELETE',
+          			success: function(data){
+          				console.log("user deleted")
+                  window.location.replace('/signup')
+                }
+              })
+            })
+          </script>
         </div>
     </div>
 </div>
