@@ -18,7 +18,10 @@ userRouter.route('/login')
   userRouter.route('/index')
     .get(usersController.index)
 
-userRouter.route('/update')
+userRouter.route('/update/:_id')
+  .get(function(req, res){
+    res.render('update')
+  })
   .put(usersController.update)
 
 
