@@ -18,8 +18,6 @@ userRouter.route('/login')
 userRouter.route('/update')
   .put(usersController.update)
 
-userRouter.route('/profile')
-  .delete(usersController.destroy)
 
 userRouter.route('/signup')
   .get(function(req, res){
@@ -36,6 +34,9 @@ userRouter.route('/signup')
 userRouter.get('/profile', isLoggedIn, function(req, res){
   res.render('profile', {user: req.user})
 })
+
+userRouter.route('/profile')
+  .delete(usersController.destroy)
 
 ///////////// Step 9 /////////////
 userRouter.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))

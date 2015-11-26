@@ -16,7 +16,7 @@
 
             <p>
                 <strong>Name</strong>: <%= user.local.name || user.facebook.name %><br>
-                <strong>id</strong>: <%= user._id %><br>
+                <strong>id</strong>:<span id="user_id"> <%= user._id %></span><br>
                 <strong>email</strong>: <%= user.local.email || user.facebook.email %><br>
                 <% if(user.local.id){ %>
                   <strong>zip</strong>: <%= user.local.zip %><br>
@@ -24,15 +24,16 @@
             </p>
 
           <% if(user._id){ %>
-            <button type="button" class="delete_user">Delete Account</button>
+            <button type="button" id="delete_user">Delete Account</button>
           <% } %>
             <script>
             $("#delete_user").on('click',function(){
           		$.ajax({
-          			url: "/profile/"+ user._id,
+          			url: "/profile",
           			method: 'DELETE',
           			success: function(data){
           				console.log("user deleted")
+                  window.location.replace('/signup')
                 }
               })
             })
