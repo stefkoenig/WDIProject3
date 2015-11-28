@@ -31,7 +31,7 @@ passport.use('local-signup', new LocalStrategy({
 
     var newUser = new User()
     newUser.local.name = req.body.name
-    newUser.local.zip = req.body.zip
+    newUser.local.city = req.body.city
     newUser.local.email = req.body.email
     newUser.local.password = newUser.generateHash(password)
 
@@ -106,9 +106,8 @@ passport.use(new MeetupStrategy({
       newUser.meetup.token = token
       newUser.meetup.name = profile.displayName
       newUser.meetup.city = rawData.results[0].city
-      console.log("city:",rawData.results[0].city)
-      // newUser.meetup.email = profile.emails[0].value
-
+      // console.log("city:",rawData.results[0].city)
+     
       newUser.save(function(err){
         if(err) throw err
         return done(null, newUser)

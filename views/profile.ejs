@@ -21,9 +21,8 @@
                 <strong>Name</strong>: <%= user.local.name || user.facebook.name || user.meetup.name %><br>
                 <strong>id</strong>:<span id="user_id"> <%= user._id %></span><br>
                 <strong>email</strong>: <%= user.local.email || user.facebook.email %><br>
-                <% if(user.local.zip){ %>
-                  <strong>zip</strong>: <%= user.local.zip %><br>
-                <% } %>
+                <strong>city</strong>: <%= user.local.city || user.meetup.city %><br>
+    
             </p>
 
           <% if(user._id){ %>
