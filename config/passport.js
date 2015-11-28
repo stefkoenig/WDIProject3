@@ -92,6 +92,9 @@ passport.use(new MeetupStrategy({
     // code: configAuth.meetupAuth.code,
   }, function (token, refreshToken, profile, done) {
     // console.log(profile)
+    var data = profile._raw
+    var rawData = JSON.parse(data)
+    console.log(rawData)
     User.findOne({'meetup.id': profile.id}, function(err, user){
     if(err) return done(err)
     if(user) {
@@ -102,8 +105,8 @@ passport.use(new MeetupStrategy({
       newUser.meetup.id = profile.id
       newUser.meetup.token = token
       newUser.meetup.name = profile.displayName
-      // newUser.meetup.city = profile._raw[results].state
-      // console.log("city:",profile)
+      newUser.meetup.city = rawData.results[0].city
+      console.log("city:",rawData.results[0].city)
       // newUser.meetup.email = profile.emails[0].value
 
       newUser.save(function(err){
