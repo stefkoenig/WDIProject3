@@ -12,9 +12,7 @@ var express       = require('express'),
     passport      = require('passport'),
     Router        = require('./routes/route.js'),
     userRouter    = require('./routes/users.js'),
-    port          = process.env.PORT || 3000
-
-
+    port          = process.env.PORT || 3000,
     passportConfig = require('./config/passport.js')
 
 
@@ -25,7 +23,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 
 
-mongoose.connect('mongodb://teamtucker:password123@ds053964.mongolab.com:53964/dansdb', function(err){
+mongoose.connect('mongodb://localhost/videos', function(err){
 	if(err) return console.log('Cannot connect ')
 	console.log('Connected to MongoDB. Sweet!')
 })
