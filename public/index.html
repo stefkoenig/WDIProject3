@@ -36,14 +36,14 @@
 
 				var groupImage
 				$("#meetups").on('click',function(){
-				$.ajax({url: 'https://api.meetup.com/find/groups?zip=90401&country=US&fallback_suggestions=false&text='+catNameSplit[0]+ ','+catNameSplit[2]+'&upcoming_events=true&page=6&radius=20&sign=true&key=3a2b371927762ef203771e35256a42',
+				$.ajax({url: 'https://api.meetup.com/find/groups?location=minneapolis&country=US&fallback_suggestions=false&text='+catNameSplit[0]+ ','+catNameSplit[2]+'&upcoming_events=true&page=6&radius=20&sign=true&key=3a2b371927762ef203771e35256a42',
 					 method: 'GET',
 					 dataType: 'jsonp',
 					 success: function(data){
 						 console.log(data)
 						 data.data.forEach(function(m){
 							console.log(m)
-							var groupLink = m.link
+							// var groupLink = m.link
 							var eventId = m.next_event.id
 							var eventLink = groupLink + 'events/' + eventId
 							var groupLinkHTML = '<a href="'+ groupLink + '">'+ m.name + '</a>'
