@@ -3,7 +3,7 @@ var
   LocalStrategy = require('passport-local').Strategy,
   /////////// Step 8 ///////////
   FacebookStrategy = require('passport-facebook').Strategy,
-  MeetupStrategy   = require('passport-meetup-oauth2').Strategy,
+  MeetupStrategy   = require('passport-meetup').Strategy,
   configAuth = require('./auth.js')
   ///////// End Step 8 /////////
 
@@ -85,12 +85,13 @@ passport.use(new FacebookStrategy({
 ///////// End Step 8 /////////
 /////meetup strategy//////////
 passport.use(new MeetupStrategy({
-    clientID: configAuth.meetupAuth.client_id,
-    clientSecret: configAuth.meetupAuth.client_secret,
-    callbackURL: configAuth.meetupAuth.redirect_uri,
-    grantType: configAuth.meetupAuth.grant_type,
-    code: configAuth.meetupAuth.code,
-  }, function (accessToken, refreshToken, profile, done) {
+    consumerKey: configAuth.meetupAuth.client_id,
+    consumerSecret: configAuth.meetupAuth.client_secret,
+    callbackURL: configAuth.meetupAuth.redirect_uri
+    // grantType: configAuth.meetupAuth.grant_type,
+    // code: configAuth.meetupAuth.code,
+  }, function (token, refreshToken, profile, done) {
+    // console.log(profile)
     User.findOne({'meetup.id': profile.id}, function(err, user){
     if(err) return done(err)
     if(user) {
@@ -101,7 +102,9 @@ passport.use(new MeetupStrategy({
       newUser.meetup.id = profile.id
       newUser.meetup.token = token
       newUser.meetup.name = profile.displayName
-      newUser.meetup.email = profile.emails[0].value
+      // newUser.meetup.city = profile._raw[results].state
+      // console.log("city:",profile)
+      // newUser.meetup.email = profile.emails[0].value
 
       newUser.save(function(err){
         if(err) throw err

@@ -9,13 +9,10 @@ module.exports = {
 
   'meetupAuth': {
   	'client_id':'76eahb4rbbjghdtl7v69s6ir9a',
-	'client_secret':'5jtbnt0964s9qdrl3f2edlbpnk',
-	'grant_type':'authorization_code',
-	'redirect_uri':'https://secure.meetup.com/oauth2/authorize
-   ?client_id=76eahb4rbbjghdtl7v69s6ir9a
-   &response_type=token
-   &redirect_uri=https://127.0.0.1:3000',
-	'code':'d890efbb4c73fa9db0d5a6726fb281ef'
+  	'client_secret':'5jtbnt0964s9qdrl3f2edlbpnk',
+  	// 'grant_type':'authorization_code',
+  	'redirect_uri':'http://localhost:3000/auth/meetup/callback'
+  	// 'code':'d890efbb4c73fa9db0d5a6726fb281ef'
 
   }
 }
@@ -30,3 +27,4 @@ module.exports = {
 //   "token_type": "bearer",
 //   "expires_in": 3600
 //https://secure.meetup.com/oauth2/access?client_id=76eahb4rbbjghdtl7v69s6ir9a&client_secret=5jtbnt0964s9qdrl3f2edlbpnk&grant_type=authorization_code&redirect_uri=https://www.getpostman.com/oauth2/callback&code=d890efbb4c73fa9db0d5a6726fb281ef
+//callback from meetup:  'https://secure.meetup.com/oauth2/authorize?client_id=76eahb4rbbjghdtl7v69s6ir9a&response_type=token&redirect_uri=https://127.0.0.1:3000'

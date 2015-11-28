@@ -15,7 +15,14 @@ var userSchema = new Schema({
       name: String,
       token: String,
       email: String
-    }
+    },
+    meetup: {
+      id: String,
+      name: String,
+      token: String,
+      city: String
+      // email: String
+  }
 })
 
 //create 2 custom methods for userSchema

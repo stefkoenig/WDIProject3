@@ -53,6 +53,12 @@ userRouter.get('/auth/facebook/callback', passport.authenticate('facebook', {
   failureRedirect: '/'
 }))
 ////////// End Step 9 ///////////
+userRouter.get('/auth/meetup', passport.authenticate('meetup'))
+
+userRouter.get('/auth/meetup/callback', passport.authenticate('meetup', {
+  successRedirect: '/profile',
+  failureRedirect: '/'
+}))
 
 ///////////// Step 6 /////////////
 userRouter.get('/logout', function(req, res){
