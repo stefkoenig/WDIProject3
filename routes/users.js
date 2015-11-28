@@ -48,6 +48,9 @@ userRouter.get('/profile', isLoggedIn, function(req, res){
 userRouter.route('/profile')
   .delete(usersController.destroy)
 
+userRouter.route('/user')
+  .get(usersController.userData)
+
 ///////////// Step 9 /////////////
 userRouter.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}))
 
