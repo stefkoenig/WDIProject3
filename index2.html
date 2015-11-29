@@ -17,13 +17,17 @@
     <!-- Custom CSS -->
     <link href="assets/css/grayscale.css" rel="stylesheet">
 
-    <!--<script type="text/javascript" src="assets/js/jquery.video-ui.js"></script>-->
+    <!-- Video Player CSS -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!--Default Video Player -->
+    <link href="assets/css/video-default.css" rel="stylesheet">
 
-    <!-- AJAX -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- JQuery and Javascript for video player -->
+    <!--<link href="http://www.jqueryscript.net/css/top.css" rel="stylesheet" type="text/css">-->
+    <script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.video-ui.js"></script>
+
 
     <!-- Custom Fonts -->
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -125,16 +129,11 @@
     <section id="video" class="container content-section text-center">
     <div class="row">
       <!--<div class="col-sm-6">-->
-	<button type="button" id="videos">Display Talk</button>
-
-</script>
 
         <h2>The Random Act of Video</h2>
   <div class="video-container">
-
-      <iframe id="display-video" width="420" height="315" src="" frameborder="0" allowfullscreen></iframe>
+      <iframe width="420" height="315" src="https://www.youtube.com/embed/-a6Pe1ovKHg" frameborder="0" allowfullscreen></iframe>
   </div>
-
 
       </div>
 
@@ -145,14 +144,6 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Contact Start Bootstrap</h2>
-
-                <h1>MeetUps</h1>
-              	<button type="button" id="meetups">Display Meetups</button>
-              	<div class="all-meetups">
-              		<ul class="list-meetups"></ul>
-              	</div>
-
-
                 <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
                 <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
                 </p>
@@ -196,58 +187,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="assets/js/grayscale.js"></script>
-
-    <script type="text/javascript">
-  	$("#videos").on('click',function(){
-  		$.ajax({
-  			url: "/api/videos",
-  			method: 'GET',
-  			success: function(data){
-  				console.log(data)
-  				console.log("video found")
-  				$('#display-video').attr('src',data.source)
-  				var categoryName = data.categoryName
-  				var catNameSplit = categoryName.split(" ")
-  				console.log(catNameSplit[0],catNameSplit[2])
-  				console.log(data.categoryName)
-
-
-  				var groupImage
-  				$("#meetups").on('click',function(){
-  				$.ajax({url: 'https://api.meetup.com/find/groups?zip=90401&country=US&fallback_suggestions=false&text='+catNameSplit[0]+ ','+catNameSplit[2]+'&upcoming_events=true&page=6&radius=20&sign=true&key=3a2b371927762ef203771e35256a42',
-  					 method: 'GET',
-  					 dataType: 'jsonp',
-  					 success: function(data){
-  						 console.log(data)
-  						 data.data.forEach(function(m){
-  							console.log(m)
-  							var groupLink = m.link
-  							var eventId = m.next_event.id
-  							var eventLink = groupLink + 'events/' + eventId
-  							var groupLinkHTML = '<a href="'+ groupLink + '">'+ m.name + '</a>'
-  							var eventLinkHTML = '<a href="'+ eventLink + '">'+ m.next_event.name + '</a>'
-  							var groupLi = '<li>' + groupLinkHTML + '</li>'
-  							var eventSpan = '<span>' + eventLinkHTML + '</span>'
-
-  							if (m.group_photo){
-  								groupImage = m.group_photo.photo_link
-  								console.log(groupImage)
-  							}
-  							else{
-  								groupImage = 'https://upload.wikimedia.org/wikipedia/commons/7/73/Meetup_Logo_2015.png'
-  								console.log(groupImage)
-  							}
-
-  							var imageSource = '<img src=' + '"' + groupImage + '"' + '>'
-  							$('.list-meetups').append(groupLi).append(eventSpan).append(imageSource)
-  							})
-  					}})
-  				})
-  		}
-  		})
-  	})
-
-  </script>
 
 </body>
 
