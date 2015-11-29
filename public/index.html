@@ -131,7 +131,7 @@
     <section id="video" class="container content-section text-center">
     <div class="row">
       <!--<div class="col-sm-6">-->
-	<button type="button" id="videos">Display Talk</button>
+	<!-- <button type="button" id="videos">Display Talk</button> -->
 
 </script>
 
@@ -150,12 +150,9 @@
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Start Bootstrap</h2>
-
                 <h1>MeetUps</h1>
-              	<button type="button" id="meetups">Display Meetups</button>
-              	<div class="all-meetups">
-              		<ul class="list-meetups"></ul>
+              	<div class="row">
+              		<ul class=" list-inline list-meetups"></ul>
               	</div>
 
                 <ul class="list-inline banner-social-buttons">
@@ -191,12 +188,12 @@
 
 
 
-    
+
     <!-- Custom Theme JavaScript -->
     <script src="assets/js/grayscale.js"></script>
 
     <script type="text/javascript">
-  	$("#videos").on('click',function(){
+  	$(window).on('load',function(){
   		$.ajax({
   			url: "/api/videos",
   			method: 'GET',
@@ -211,7 +208,7 @@
 
 
   				var groupImage
-  				$("#meetups").on('click',function(){
+  				$("#display-video").on('load',function(){
   				$.ajax({url: '/user',
   					 method: 'GET',
   					 dataType: 'json',
@@ -250,8 +247,8 @@
               								console.log(groupImage)
               							}
 
-              							var imageSource = '<img src=' + '"' + groupImage + '"' + '>'
-              							$('.list-meetups').append(groupLi).append(imageSource)
+              							var imageSource = '<img width="33.3%" height="33.3%" src=' + '"' + groupImage + '"' + '>'
+              							$('.list-meetups').append(imageSource)
               							})
         					     }
                   })
