@@ -7,6 +7,7 @@ var userSchema = new Schema({
     local: {
       name: String,
       city:  String,
+      state: String,
       email: String,
       password: String
     },
@@ -20,7 +21,8 @@ var userSchema = new Schema({
       id: String,
       name: String,
       token: String,
-      city: String
+      city: String,
+      state: String
       // email: String
   }
 })
