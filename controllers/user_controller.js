@@ -24,6 +24,14 @@ function update(req, res){
   })
 }
 
+function userData(req,res){
+  User.find({_id: req.user._id},function(err,user){
+    if(err) res.json({err: err})
+      console.log("userData", req.user)
+    res.json(req.user)
+  })
+}
+
 function show(req, res){
      User.find({_id: req.user._id}, function(err,user){
          if(err) res.json({ err: err })
@@ -46,5 +54,6 @@ module.exports = {
     index: index,
     show: show,
     update: update,
-    destroy: destroy
+    destroy: destroy,
+    userData: userData
 }
